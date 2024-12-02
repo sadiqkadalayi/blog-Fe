@@ -1,31 +1,39 @@
 
 
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
 
 function SignupBox() {
       const [signupData, setSignupData] = useState({});
 //   const dispatch = useDispatch();
 //   const navigate = useNavigate(); 
-
+// useEffect(()=>{
+//   console.log(signupData);
+  
+// },[signupData])
   const handleSignUp = (event) => {
+    axios.post('http://localhost:8080/users/signup',signupData).then((res)=>{
 
+    }).catch((err)=>{
+      console.log(err);
+      
+    })
   };
   const handleChange=(e)=>{
-
+    setSignupData({...signupData,[e.target.name]:e.target.value})
   }
   return (
     <div className="login-container">
       <h2>Login</h2>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="fullName">full Name</label>
           <input
             type="text"
-            id="username"
-            name="username"
+            id="fullName"
+            name="fullname"
             className="form-control"
-            value={signupData.username}
+            value={signupData.fullName}
             onChange={handleChange}
             required
           />
