@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AxiosInstance } from '../../config/axiosConfig';
 
 function LoginBox() {
         const [loginData, setloginData] = useState({});
@@ -8,10 +9,15 @@ function LoginBox() {
     const navigate = useNavigate(); 
   
     const handleLogin = (event) => {
-      axios({
-        url:"http://localhost:8080/users/login",
-        method:"post",
-        data:loginData
+      // axios({
+      //   url:"http://localhost:8080/users/login",
+      //   method:"post",
+      //   data:loginData
+
+        AxiosInstance({
+          url:"/users/login",
+          method:"post",
+          data:loginData
       }).then((res)=>{
         localStorage.setItem("token",res.data.token)
         localStorage.setItem("sample","sample token")

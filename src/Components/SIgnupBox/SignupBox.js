@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AxiosInstance } from '../../config/axiosConfig';
 
 
 function SignupBox() {
@@ -14,7 +15,7 @@ function SignupBox() {
   
 // },[signupData])
   const handleSignUp = (event) => {
-    axios.post('http://localhost:8080/users/signup',signupData).then((res)=>{
+    AxiosInstance.post('/users/signup',signupData).then((res)=>{
       navigate('/login')
     }).catch((err)=>{
       console.log(err);
