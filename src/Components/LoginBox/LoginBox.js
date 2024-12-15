@@ -1,27 +1,44 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function LoginBox() {
         const [loginData, setloginData] = useState({});
   //   const dispatch = useDispatch();
-  //   const navigate = useNavigate(); 
+    const navigate = useNavigate(); 
   
     const handleLogin = (event) => {
-  
+      axios({
+        url:"http://localhost:8080/users/login",
+        method:"post",
+        data:loginData
+      }).then((res)=>{
+        localStorage.setItem("token",res.data.token)
+        localStorage.setItem("sample","sample token")
+        navigate('/')
+        console.log(res);
+        
+      }).catch((err)=>{
+        console.log(err);
+        
+      })
     };
+
+    
     const handleChange=(e)=>{
-  
+      setloginData({...loginData,[e.target.name]:e.target.value})
     }
     return (
       <div className="login-container">
         <h2>Login</h2>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">email</label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               className="form-control"
-              value={loginData.username}
+              value={loginData.email}
               onChange={handleChange}
               required
             />

@@ -2,19 +2,20 @@
 
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function SignupBox() {
       const [signupData, setSignupData] = useState({});
 //   const dispatch = useDispatch();
-//   const navigate = useNavigate(); 
+  const navigate = useNavigate(); 
 // useEffect(()=>{
 //   console.log(signupData);
   
 // },[signupData])
   const handleSignUp = (event) => {
     axios.post('http://localhost:8080/users/signup',signupData).then((res)=>{
-
+      navigate('/login')
     }).catch((err)=>{
       console.log(err);
       
@@ -27,13 +28,13 @@ function SignupBox() {
     <div className="login-container">
       <h2>Login</h2>
         <div className="form-group">
-          <label htmlFor="fullName">full Name</label>
+          <label htmlFor="name">full Name</label>
           <input
             type="text"
-            id="fullName"
-            name="fullname"
+            id="name"
+            name="name"
             className="form-control"
-            value={signupData.fullName}
+            value={signupData.name}
             onChange={handleChange}
             required
           />
@@ -41,7 +42,7 @@ function SignupBox() {
         <div className="form-group">
           <label htmlFor="password">mob</label>
           <input
-            type="number"
+            type="text"
             name='mob'
             className="form-control"
             value={signupData.mob}
@@ -53,9 +54,9 @@ function SignupBox() {
           <label htmlFor="password">email</label>
           <input
             type="email"
- name='email'
+            name='email'
             className="form-control"
-  value={signupData.email}
+            value={signupData.email}
             onChange={handleChange}
             required
           />
