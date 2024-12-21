@@ -1,0 +1,10 @@
+.linkto{
+    text-decoration: none;
+    color: rgb(17, 15, 15);
+}
+
+.linkto:hover{
+    color: green;
+    text-decoration: dashed;
+    font-weight: 500;
+}

@@ -1,22 +1,31 @@
 import React from "react";
 import "./RootlayOut.css";
 import { Outlet } from "react-router-dom";
+import NavBaarrrrr from "../Components/Nav-Bar/NavBaarrrrr";
+import Footer from "../Components/Footer/Footer";
+import Slide from "../Components/Slide/Slide";
+
+
 
 function RootLayout() {
   return (
-    <div className="main-container bg-danger">
+    <div className="main-container">
       <nav>
         <div>
-          <h2>navbar</h2>
+          <NavBaarrrrr /> 
+
         </div>
+        <div>
+        <Slide/>
+      </div>
       </nav>
-      
+
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
 
       <footer>
-        <h2>footer</h2>
+        <Footer />
       </footer>
     </div>
   );
