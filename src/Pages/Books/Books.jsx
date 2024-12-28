@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Cards from '../../Components/Cards/Cards'
 import { useNavigate } from 'react-router-dom';
 import { AxiosInstance } from '../../config/axiosConfig';
+import BooksCards from '../../Components/Cards/BooksCards';
 
 function Books() {
 
@@ -33,7 +33,7 @@ function Books() {
   return (
     <div className='container mt-3'>  
     <div className='row'>
-    <div className='d-flex flex-wrap gap-3'> {data.map(item=> <Cards book={item} key={item._id}/>)}</div>
+    <div className='d-flex flex-wrap gap-3'> {data.map((item)=> <BooksCards book={item} key={item._id}/>)}</div>
     </div>
     </div>
   )

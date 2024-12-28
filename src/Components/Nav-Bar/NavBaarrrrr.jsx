@@ -32,10 +32,12 @@ const logout = ()=>{
               Books
               </Link></Nav.Link>
             
-            <NavDropdown title="Services" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown title="Blog" id="collapsible-nav-dropdown">
+              <NavDropdown.Item  href="#action/3.1"><Link className='linkto' to={'/create-post'}>Create Blog</Link></NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+              <Link className='linkto' to={'/post'}>
+                View posts
+                </Link>
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />

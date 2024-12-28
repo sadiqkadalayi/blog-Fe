@@ -8,6 +8,8 @@ import { AxiosInstance } from '../../config/axiosConfig';
 
 function SignupBox() {
   const [signupData, setSignupData] = useState({});
+
+
   //   const dispatch = useDispatch();
   const navigate = useNavigate();
   // useEffect(()=>{
@@ -15,15 +17,31 @@ function SignupBox() {
 
   // },[signupData])
   const handleSignUp = (event) => {
-    AxiosInstance.post('/users/signup', signupData).then((res) => {
-      navigate('/login')
-    }).catch((err) => {
-      console.log(err);
-
-    })
+    if(signupData.password !== signupData.cnfPassword){
+      alert('The passwords you entered do not match. We apologize. Verify your password, please.')
+    }else{
+      AxiosInstance.post('/users/signup', signupData).then((res) => { 
+        if(res.status === 200){
+          alert(res.data);
+          navigate('/login')
+        }
+ 
+      }).catch((err) => {
+        console.log(err);
+        if(err.status === 400){
+          alert(err.response.data);
+          navigate('/signup')
+        }
+        
+  
+      })
+    }
+    
   };
   const handleChange = (e) => {
+    
     setSignupData({ ...signupData, [e.target.name]: e.target.value })
+    
   }
   return (
 
@@ -71,7 +89,7 @@ function SignupBox() {
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     className="form-control"
                     value={signupData.password}
